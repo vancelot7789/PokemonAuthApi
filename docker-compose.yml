@@ -1,0 +1,44 @@
+#version: '3.1'
+#
+#services:
+#  db:
+#    image: postgres
+#    container_name: pokemon_postgres_test_container
+#    ports:
+#      - "5433:5432"
+#    restart: always
+#    environment:
+#      POSTGRES_USER: bbchang
+#      POSTGRES_PASSWORD: changemeinprod!
+#
+
+
+
+
+
+
+version: '3.1'
+
+services:
+  app:
+    image: vancelot7789/pokemonauthtest:1.0
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/pokemontest
+      SPRING_DATASOURCE_USERNAME: bbchang
+      SPRING_DATASOURCE_PASSWORD: changemeinprod!
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: pokemon_auth_postgres_test_container
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: bbchang
+      POSTGRES_PASSWORD: changemeinprod!
+      POSTGRES_DB: pokemontest
+
